@@ -3,9 +3,15 @@ package utils
 import "github.com/spf13/viper"
 
 type Config struct {
-	APPPORT  string `mapstructure:"APP_PORT"`
-	APPNAME  string `mapstructure:"APP_NAME"`
-	APPDEBUG string `mapstructure:"APP_DEBUG"`
+	APPPORT      string `mapstructure:"APP_PORT"`
+	APPNAME      string `mapstructure:"APP_NAME"`
+	APPDEBUG     string `mapstructure:"APP_DEBUG"`
+	DBCONNECTION string `mapstructure:"DB_CONNECTION"`
+	DBHOST       string `mapstructure:"DB_HOST"`
+	DBUSERNAME   string `mapstructure:"DB_USERNAME"`
+	DBPASSWORD   string `mapstructure:"DB_PASSWORD"`
+	DBDATABASE   string `mapstructure:"DB_DATABASE"`
+	DBPORT       string `mapstructure:"DB_PORT"`
 }
 
 func LoadConfig(path string) (config Config, err error) {
@@ -17,6 +23,6 @@ func LoadConfig(path string) (config Config, err error) {
 	if err != nil {
 		return
 	}
-	err = viper.Unmarshal(config)
+	err = viper.Unmarshal(&config)
 	return
 }
